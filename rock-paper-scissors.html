@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script> 
+        // returns Rock, Paper or Scissors randomly
+        function computerPlay(){
+            let random = Math.random();
+            if (random >= 0 && random < 0.33){
+                return "Rock";
+            }
+            else if(random >= 0.33 && random <0.66){
+                return "Paper";
+            }
+            else {
+                return "Scissors";
+            }
+        }
+        
+        game();
+        function game(){
+
+            let playerWinCount = 0;
+            let computerWinCount = 0;
+
+            playRound(prompt("Rock, Paper or Scissors?", ""), computerPlay());
+            playRound(prompt("Rock, Paper or Scissors?", ""), computerPlay());
+            playRound(prompt("Rock, Paper or Scissors?", ""), computerPlay());
+            playRound(prompt("Rock, Paper or Scissors?", ""), computerPlay());
+            playRound(prompt("Rock, Paper or Scissors?", ""), computerPlay());
+
+            if (playerWinCount>computerWinCount){
+                return console.log("You win!");
+            }    
+            else if (playerWinCount===computerWinCount){
+                return console.log("Tie.");
+            }
+            else{
+                return console.log("You lose.");
+            }
+            
+            function playRound(playerSelection, computerSelection){
+            
+                function capitalize(string){
+                    if (string !== null || undefined){
+                        newString = string.charAt(0).toUpperCase() + 
+                        string.slice(-(string.length-1)).toLowerCase();
+                        return newString;
+                    }
+                    else{
+                        return "Oops, something went wrong."
+                    }
+                }
+
+                playerSelection = capitalize(playerSelection);
+                computerSelection = capitalize(computerSelection);
+                
+                
+            
+                if (playerSelection==="Rock" && computerSelection === "Paper"){
+                    computerWinCount += 1 ;
+                    return console.log("You lose! Paper beats Rock");
+                }
+                else if (playerSelection==="Paper" && computerSelection==="Rock"){
+                    playerWinCount += 1;
+                    return console.log("You win! Paper beats Rock");
+                }
+                else if (playerSelection==="Paper" && computerSelection==="Scissors"){
+                    computerWinCount += 1 ;
+                    return console.log("You lose! Scissors beats Paper");
+                }
+                else if (playerSelection==="Paper" && computerSelection==="Paper"){
+                    return console.log("Tie.");
+                }
+                else if (playerSelection==="Rock" && computerSelection==="Rock"){
+                    return console.log("Tie.");
+                }
+                else if (playerSelection==="Scissors" && computerSelection==="Scissors"){
+                    return console.log("Tie.");
+                }
+                else if (playerSelection==="Rock" && computerSelection==="Scissors"){
+                    playerWinCount += 1;
+                    return console.log("You win! Rock beats Scissors");
+                }
+                else if (playerSelection==="Scissors" && computerSelection==="Paper"){
+                    playerWinCount += 1;
+                    return console.log("You win! Scissors beats Paper");
+                }
+                else if (playerSelection==="Scissors" && computerSelection==="Rock"){
+                    computerWinCount += 1 ;
+                    return console.log("You lose! Rock beats Scissors");
+                }
+                else{
+                    return console.log("Oops. Something went wrong.");
+                }
+            }
+        }
+        
+
+        </script>
+    </body>
+</html>
